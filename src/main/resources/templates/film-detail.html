@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dettagli film</title>
+</head>
+<body>
+    <div class="col-3">
+        <div>
+            <h2 th:text="${film.id + ' ' + film.titolo}"></h2>
+        </div>
+
+        <div>
+            <div><b>Genere: </b><span th:text="${film.genere}"></span></div>
+        </div>
+
+        <div>
+            <div><b>Anno: </b><span th:text="${film.anno}"></span></div>
+        </div>
+
+        <div>
+            <div><b>Voto: </b><span th:text="${film.voto}"></span></div>
+        </div>
+
+        <!-- pulsanti -->
+        <div>
+            <a th:href="@{/films}" class="btn btn-primary">Indietro</a>
+        </div>
+        <div>
+            <a th:href="@{'/films/delete'+${film.id}}" class="btn btn-danger">Elimina</a>
+        </div>
+    </div>
+</body>
+</html>

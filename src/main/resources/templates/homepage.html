@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css">
+    <title>Homepage</title>
+</head>
+<body>
+    <!-- avviso eliminazione film -->
+    <div class="col-3 my-2">
+        <div class="alert alert-info" role="alert" th:if="${deleted != null}">
+            Film eliminato!
+        </div>
+    </div>
+    <!-- avviso eliminazione catalogo -->
+    <div class="col-3 my-2">
+        <div class="alert alert-info" role="alert" th:if="${deletedAll != null}">
+            Catalogo eliminato!
+        </div>
+    </div>
+    <!-- avviso aggiunta film -->
+    <div class="col-3 my-2">
+        <div class="alert alert-info" role="alert" th:if="${added != null}">
+            Film aggiunto!
+        </div>
+    </div>
+
+    <header class="my-2">
+        <h2>Lista film</h2>
+        <!-- pulsante aggiunta film e cancellazione catalogo -->
+        <a th:href="@{/films/new}" class="btn btn-success">Nuovo film</a>
+        <a th:href="@{/films/deleteAll}" class="btn btn-danger">Svuota catalogo</a>
+    </header>
+
+    <!-- tabella dei film -->
+    <table class="table table-striped table-bordered">
+        <thead class="thead-dark">
+            <tr>
+                <th class="col-1">Codice</th>
+                <th class="col-2">Titolo</th>
+                <th class="col-2">Genere</th>
+                <th class="col-2">Anno</th>
+                <th class="col-1">voto</th>
+                <th class="col-1"></th>
+                <th class="col-1"></th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- ciclo per inserire ogni film con le sue informazioni-->
+            <tr th:each="f : ${films}">
+                <a th:href="@{'films/'+${film.id}}"><td th:text="${f.id}"></td></a>
+                <td th:text="${f.titolo}"></td>
+                <td th:text="${f.genere}"></td>
+                <td th:text="${f.anno}"></td>
+                <td th:text="${f.voto}"></td>
+
+                <!-- pulsante per eliminare il film -->
+                <td>
+                    <a th:href="@{'/films/delete/'+${f.id}}" class="btn btn-danger">Elimina</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <small th:if="${#lists.isEmpty(films)}">
+        Nessun film trovato!
+    </small>
+</body>
+</html>

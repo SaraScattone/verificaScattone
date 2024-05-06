@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nuovo film</title>
+</head>
+<body>
+    <div>
+        <h2>Nuovo film</h2>
+    </div>
+
+    <div class="col-3">
+        <form method="post" th:action="@{/films/new}" th:object="${filmForm}">
+            <div>
+                <label>Codice</label>
+                <input type="text" th:field="*{id}">
+
+                <div th:if="${#fields.hasErrors('id')}">
+                    <span th:errors="*{id}" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div>
+                <label>Titolo</label>
+                <input type="text" th:field="*{titolo}">
+
+                <div th:if="${#fields.hasErrors('titolo')}">
+                    <span th:errors="*{titolo}" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div>
+                <label>Genere</label>
+                <select name="voto">
+                    <option value="thriller" th:field="*{genere}">Thriller</option>
+                    <option value="commedia" th:field="*{genere}">Commedia</option>
+                    <option value="horror" th:field="*{genere}">Horror</option>
+                    <option value="romantico" th:field="*{genere}">Romantico</option>
+                    <option value="documentario" th:field="*{genere}">Documentario</option>
+                </select>
+
+                <div th:if="${#fields.hasErrors('genere')}">
+                    <span th:errors="*{genere}" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div>
+                <label>Anno</label>
+                <input type="text" th:field="*{anno}">
+
+                <div th:if="${#fields.hasErrors('anno')}">
+                    <span th:errors="*{anno}" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div>
+                <label>Voto</label>
+                <select name="voto">
+                    <option value="1" th:field="*{voto}">1</option>
+                    <option value="2" th:field="*{voto}">2</option>
+                    <option value="3" th:field="*{voto}">3</option>
+                    <option value="4" th:field="*{voto}">4</option>
+                    <option value="5" th:field="*{voto}">5</option>
+                </select>
+
+                <div th:if="${#fields.hasErrors('voto')}">
+                    <span th:errors="*{voto}" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div>
+                <input class="btn btn-primary" type="submit" value="Conferma">
+                <input class="btn btn-secondary" type="reset" value="Svuota">
+                <a class="btn btn-secondary" th:href="@{/films}">Home</a>
+            </div>
+        </form>
+    </div>
+</body>
+</html>
